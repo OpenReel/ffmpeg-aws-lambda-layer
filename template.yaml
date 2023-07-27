@@ -13,11 +13,11 @@ Resources:
       Description: FFMPEG for AWS Lambda
       ContentUri: build/layer
       CompatibleRuntimes:
-        - nodejs14.x
-        - python3.9
-        - ruby3.0
-        - java11
-        - go1.16
+        - nodejs16.x
+        - python3.10
+        - ruby3.2
+        - java17
+        - go1.x
       LicenseInfo: GPL-2.0-or-later
       RetentionPolicy: Retain
 

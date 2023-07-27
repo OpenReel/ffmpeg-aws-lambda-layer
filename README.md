@@ -4,7 +4,7 @@ A Lambda layer containing a static version of FFmpeg/FFprobe utilities from the 
 
 ## Usage
 
-The easiest way to use this is to pull it directly from the AWS Serverless Application repository into a CloudFormation/SAM application or deploy it directly from the Serverless Application Repository into your account and then link it as a layer. 
+The easiest way to use this is to pull it directly from the AWS Serverless Application repository into a CloudFormation/SAM application or deploy it directly from the Serverless Application Repository into your account and then link it as a layer.
 
 The `ffmpeg` and `ffprobe` binaries will be in `/opt/bin/` after linking the layer to a Lambda function.
 
@@ -21,10 +21,16 @@ This package includes FFmpeg 6.0, packaged by John Van Sickle. Please consider s
 
 The output will be in the `result` dir.
 
+Create a deployment bucket, if not exist:
+
+```bash
+aws --profile <admin_profile_for_env> s3api create-bucket --bucket openreel-ffmpeg-deployment-bucket --region us-east-1
+```
+
 Run the following command to deploy your AWS account's compiled result as a layer.
 
-```
-make deploy DEPLOYMENT_BUCKET=<YOUR BUCKET NAME>
+```bash
+make deploy DEPLOYMENT_BUCKET=openreel-ffmpeg-deployment-bucket
 ```
 
 ### Configuring the deployment
@@ -35,7 +41,7 @@ By default, this uses `ffmpeg-lambda-layer` as the stack name. Provide a `STACK_
 
 An example project is in the [example](example) directory. It sets up two buckets and listens to file uploads on the first bucket to convert and generate thumbnails from uploaded video files. You can deploy it from the root Makefile using the following:
 
-```
+```bash
 make deploy-example DEPLOYMENT_BUCKET=<YOUR BUCKET NAME>
 ```
 
@@ -52,4 +58,4 @@ Gojko Adzic <https://gojko.net>
 
 ## LGPL version
 
-*  [Giuseppe Battista](http://github.com/giusedroid) created a build that contains only LGPL components, for organisations that are concerned about GPL licensing. See it at <https://github.com/giusedroid/ffmpeg-aws-lambda-layer/tree/license/lgpl>
+* [Giuseppe Battista](http://github.com/giusedroid) created a build that contains only LGPL components, for organisations that are concerned about GPL licensing. See it at <https://github.com/giusedroid/ffmpeg-aws-lambda-layer/tree/license/lgpl>
